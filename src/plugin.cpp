@@ -221,7 +221,8 @@ static void loadPlugins(std::string path) {
 	}
 	if (!message.empty()) {
 		message += "See log for details.";
-		osdialog_message(OSDIALOG_WARNING, OSDIALOG_OK, message.c_str());
+		warn("loadPlugins failures: %s", message.c_str());
+		// osdialog_message(OSDIALOG_WARNING, OSDIALOG_OK, message.c_str());
 	}
 }
 
@@ -313,7 +314,8 @@ static void extractPackages(std::string path) {
 		}
 	}
 	if (!message.empty()) {
-		osdialog_message(OSDIALOG_WARNING, OSDIALOG_OK, message.c_str());
+		warn("vaguely plugin like things that failed to load: %s", message.c_str());
+		//osdialog_message(OSDIALOG_WARNING, OSDIALOG_OK, message.c_str());
 	}
 }
 

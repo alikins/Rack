@@ -15,7 +15,7 @@ FLAGS += -DVERSION=$(VERSION)
 FLAGS += -MMD -MP
 FLAGS += -g
 # Optimization
-FLAGS += -O3 -march=nocona -ffast-math -fno-finite-math-only
+# FLAGS += -O3 -march=nocona -ffast-math -fno-finite-math-only
 FLAGS += -Wall -Wextra -Wno-unused-parameter
 
 ifneq ($(ARCH), mac)

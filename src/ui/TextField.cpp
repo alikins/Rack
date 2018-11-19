@@ -31,6 +31,7 @@ void TextField::draw(NVGcontext *vg) {
 }
 
 void TextField::onMouseDown(EventMouseDown &e) {
+	debug("TextField::onMouseDown x:%0.2f y:%0.2f", e.pos.x, e.pos.y);
 	if (e.button == 0) {
 		cursor = selection = getTextPosition(e.pos);
 	}
@@ -39,6 +40,7 @@ void TextField::onMouseDown(EventMouseDown &e) {
 
 void TextField::onMouseMove(EventMouseMove &e) {
 	if (this == gDraggedWidget) {
+		debug("TextField::onMouseMove (gDragged) x:%0.2f y:%0.2f", e.pos.x, e.pos.y);
 		int pos = getTextPosition(e.pos);
 		if (pos != selection) {
 			cursor = pos;
@@ -190,6 +192,7 @@ void TextField::setText(std::string text) {
 }
 
 int TextField::getTextPosition(Vec mousePos) {
+	debug("TextField::getTextPosition pos x: %0.2f y: %0.2f", mousePos.x, mousePos.y);
 	return bndTextFieldTextPosition(gVg, 0.0, 0.0, box.size.x, box.size.y, -1, text.c_str(), mousePos.x, mousePos.y);
 }
 

@@ -107,14 +107,44 @@ void Widget::step() {
 }
 
 void Widget::draw(NVGcontext *vg) {
+	if (visible) {
+		/*
+		nvgRect(vg, box.pos.x, box.pos.y, box.size.x, box.size.y);
+		nvgStrokeWidth(vg, 1.0);
+		nvgStrokeColor(vg, nvgRGBA(0, 0, 255, 255));
+		nvgStroke(vg);
+		*/
+	}
+
+
 	for (Widget *child : children) {
 		if (!child->visible)
 			continue;
+		/*
+		nvgStrokeWidth(vg, 1.0);
+		nvgStrokeColor(vg, nvgRGBA(255, 0, 255, 128));
+		nvgStroke(vg);
+		*/
+		nvgRect(vg, child->box.pos.x, child->box.pos.y, child->box.size.x, child->box.size.y);
+		nvgStrokeWidth(vg, 0.5);
+		nvgStrokeColor(vg, nvgRGBA(255, 0, 0, 128));
+		nvgStroke(vg);
+
 		nvgSave(vg);
 		nvgTranslate(vg, child->box.pos.x, child->box.pos.y);
 		child->draw(vg);
+
+
+
 		nvgRestore(vg);
+
 	}
+
+	Rect bbox = getChildrenBoundingBox();
+	nvgRect(vg, bbox.pos.x, bbox.pos.y, bbox.size.x, bbox.size.y);
+	nvgStrokeWidth(vg, 0.3);
+	nvgStrokeColor(vg, nvgRGBA(255, 255, 255, 200));
+	nvgStroke(vg);
 }
 
 #define RECURSE_EVENT_POSITION(_method) { \

@@ -105,9 +105,9 @@ void FramebufferWidget::draw(NVGcontext *vg) {
 	nvgFill(vg);
 
 	// For debugging the bounding box of the framebuffer
-	// nvgStrokeWidth(vg, 2.0);
-	// nvgStrokeColor(vg, nvgRGBA(255, 0, 0, 128));
-	// nvgStroke(vg);
+	nvgStrokeWidth(vg, 1.0);
+	nvgStrokeColor(vg, nvgRGBA(255, 0, 0, 128));
+	nvgStroke(vg);
 
 	nvgRestore(vg);
 }

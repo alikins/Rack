@@ -26,8 +26,14 @@ void ZoomWidget::setZoom(float zoom) {
 }
 
 void ZoomWidget::draw(NVGcontext *vg) {
+	nvgStrokeWidth(vg, 1.0);
+	nvgStrokeColor(vg, nvgRGBA(255, 255, 0, 128));
+	nvgStroke(vg);
+
 	nvgScale(vg, zoom, zoom);
+
 	Widget::draw(vg);
+
 }
 
 void ZoomWidget::onMouseDown(EventMouseDown &e) {

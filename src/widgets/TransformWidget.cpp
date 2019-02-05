@@ -41,6 +41,9 @@ void TransformWidget::scale(Vec s) {
 
 void TransformWidget::draw(NVGcontext *vg) {
 	// No need to save the state because that is done in the parent
+	nvgStrokeWidth(vg, 1.0);
+	nvgStrokeColor(vg, nvgRGBA(0, 0, 255, 128));
+	nvgStroke(vg);
 	nvgTransform(vg, transform[0], transform[1], transform[2], transform[3], transform[4], transform[5]);
 	Widget::draw(vg);
 }

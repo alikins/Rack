@@ -213,6 +213,9 @@ void SVGWidget::draw(NVGcontext *vg) {
 	if (svg && svg->handle) {
 		// printf("drawing svg %f %f\n", box.size.x, box.size.y);
 		drawSVG(vg, svg->handle);
+		nvgStrokeWidth(vg, 1.0);
+		nvgStrokeColor(vg, nvgRGBA(0, 255, 0, 128));
+		nvgStroke(vg);
 	}
 }
 

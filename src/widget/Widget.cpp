@@ -1,7 +1,7 @@
 #include <widget/Widget.hpp>
 #include <app.hpp>
 #include <algorithm>
-
+#include <cxxabi.h>
 
 namespace rack {
 namespace widget {
@@ -84,11 +84,24 @@ math::Rect Widget::getViewport(math::Rect r) {
 	return r.clamp(bound);
 }
 
+
 void Widget::addChild(Widget* child) {
+	int status;
+	char *realname;
+	char *parent_realname;
+
 	assert(child);
 	assert(!child->parent);
 	child->parent = this;
-	children.push_back(child);
+	realname = abi::__cxa_demangle(typeid(*child).name(), 0, 0, &status);
+	parent_realname = abi::__cxa_demangle(typeid(*child->parent).name(), 0, 0, &status);
+
+	DEBUG("parent %s adding child %s", parent_realname, realname);
+
+	free(realname);
+	free(parent_realname);
+
+    children.push_back(child);
 	// event::Add
 	event::Add eAdd;
 	child->onAdd(eAdd);

@@ -5,7 +5,7 @@
 #include <color.hpp>
 #include <event.hpp>
 #include <list>
-
+#include <typeinfo>
 
 namespace rack {
 

@@ -18,7 +18,7 @@
 #include <updater.hpp>
 #include <osdialog.h>
 #include <thread>
-
+#include <vector>
 
 namespace rack {
 namespace app {
@@ -451,6 +451,15 @@ struct SampleRateItem : ui::MenuItem {
 				item->rightText += CHECKMARK(settings::sampleRate == sampleRate);
 				menu->addChild(item);
 			}
+		}
+
+        std::vector<float> slowSampleRates = {0.732f, 1.465f, 5.860f, 11.719f, 23.434f, 93.75f, 375.f, 1500.f, 6000.f};
+		for (float sampleRate : slowSampleRates) {
+			SampleRateValueItem* item = new SampleRateValueItem;
+			item->sampleRate = sampleRate;
+			item->text = string::f("%.3f Hz", sampleRate);
+			item->rightText = CHECKMARK(settings::sampleRate == sampleRate);
+			menu->addChild(item);
 		}
 		return menu;
 	}
